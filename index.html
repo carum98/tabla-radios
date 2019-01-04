@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabla para entrega de radios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div class="container" id="app">
+            <h1>Radios</h1>
+            <form class="col-md-8 card p-4 mb-4 shadow"  style="margin:auto">
+                    
+                    <div class="form-row">
+                      <div class="col">
+                        <label for="cliente">Cliente</label>
+                        <input type="text" id="cliente" class="form-control" placeholder="Cliente">
+                      </div>
+                      <div class="col">
+                        <label for="ejetivo">Ejecutivo</label>
+                        <select id="ejetivo" class="form-control">
+                                <option>Ejecutivo...</option>
+                                <option value="Cindy">Cindy</option>
+                                <option value="Nathalia">Nathalia</option>
+                                <option value="Juan Carlos">Juan Carlos</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                            <label for="modalidad">Modalidad</label>
+                            <select id="modalidad" class="form-control">
+                                    <option>Modalidad...</option>
+                                    <option value="Cindy">Demo</option>
+                                    <option value="Nathalia">Venta</option>
+                                    <option value="Juan Carlos">Alquiler</option>
+                            </select>
+                      </div>
+                      <div class="col">
+                            <label for="fecha">Fecha</label>
+                              <input class="form-control" type="date" value="2019-01-01" id="fecha">
+                        </div>
+                    </div>
+            </form>
+
+            <form class="col-md-8 card p-4 shadow" style="margin:auto">
+                    <div class="form-row">
+                      <div class="form-group col-md-4">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre" v-model="nombre">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="imei">IMEI</label>
+                        <input type="text" class="form-control" id="imei" placeholder="IMEI" v-model="imei">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="sim">Sim</label>
+                        <input type="text" class="form-control" id="sim" placeholder="Sim" v-model="sim">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="cellphone">Cellphone number</label>
+                        <input type="text" class="form-control" id="cellphone" placeholder="Cellphone number" v-model="cellphone">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="modelo" aria-placeholder="Modelo">Modelo</label>
+                        <select id="modelo" class="form-control" v-model="modelo">
+                          <option>Modelo...</option>
+                          <option value="T320" >T320</option>
+                          <option value="T199">T199</option>
+                          <option value="T298">T298</option>
+                          <option value="App Celular">APP CELULAR</option>
+                          <option value="Dispatcher">Dispatcher</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mb-2"
+                    >
+                        <input type="checkbox" class="custom-control-input" id="cargador">
+                        <label class="custom-control-label" for="cargador">Cargador</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+
+                    <table class="table table-bordered mt-5">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Imei</th>
+                            <th>Sim</th>
+                            <th>Modelo</th>
+                            <th>Cellphone number</th>
+                            <th>Estado</th>
+                            <th>Cargador</th>
+                        </tr>
+                        <tr>
+                            <td>{{ nombre }}</td>
+                            <td>868254030047413</td>
+                            <td>61460973</td>
+                            <td>{{ modelo }}</td>
+                            <td>100585200009651270</td>
+                            <td>Nuevo</td>
+                            <td>Si</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="container">
+                    
+                </div>
+
+        <script src="app.js"></script>
+        
+</body>
+</html>
