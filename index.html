@@ -10,9 +10,8 @@
 </head>
 <body>
     <div class="container" id="app">
-            <h1>Radios</h1>
+            <h1>Radios Skydata CR</h1>
             <form class="col-md-8 card p-4 mb-4 shadow"  style="margin:auto">
-                    
                     <div class="form-row">
                       <div class="col">
                         <label for="cliente">Cliente</label>
@@ -42,7 +41,7 @@
                         </div>
                     </div>
             </form>
-
+      
             <form class="col-md-8 card p-4 shadow" style="margin:auto">
                     <div class="form-row">
                       <div class="form-group col-md-4">
@@ -76,15 +75,24 @@
                       </div>
                     </div>
 
-                    <div class="custom-control custom-checkbox mb-2"
-                    >
-                        <input type="checkbox" class="custom-control-input" id="cargador">
+                    <div>
+                    <div class="custom-control custom-checkbox mb-2">
+                        <input type="checkbox" class="custom-control-input" id="cargador"  true-value="Si" false-value="No" v-model="cargador">
                         <label class="custom-control-label" for="cargador">Cargador</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-            </form>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" value="Nuevo" v-model="estado">
+                      <label class="custom-control-label" for="customRadioInline1">Nuevo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline ">
+                      <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" value="Usado" v-model="estado">
+                      <label class="custom-control-label" for="customRadioInline2">Usado</label>
+                    </div>
 
+                  </div>
+                    <button type="submit" class="btn btn-primary" @click.prevent="nuevoRadio">Agregar</button>
+            </form>
                     <table class="table table-bordered mt-5">
                         <tr>
                             <th>Nombre</th>
@@ -95,23 +103,22 @@
                             <th>Estado</th>
                             <th>Cargador</th>
                         </tr>
-                        <tr>
-                            <td>{{ nombre }}</td>
-                            <td>868254030047413</td>
-                            <td>61460973</td>
-                            <td>{{ modelo }}</td>
-                            <td>100585200009651270</td>
-                            <td>Nuevo</td>
-                            <td>Si</td>
+                        <tr v-for="(radio, index) in radios" :key="radio.id">
+                            <td>{{ radio.nombre }}</td>
+                            <td>{{ radio.imei }}</td>
+                            <td>{{ radio.sim }}</td>
+                            <td>{{ radio.modelo }}</td>
+                            <td>{{ radio.cellphone }}</td>
+                            <td>{{ radio.estado }} </td>
+                            <td>{{ radio.cargador }}</td>
                         </tr>
                     </table>
+
+                    <pre> {{ $data }}</pre>
+
                 </div>
 
-                <div class="container">
-                    
-                </div>
+
 
         <script src="app.js"></script>
-        
-</body>
 </html>
