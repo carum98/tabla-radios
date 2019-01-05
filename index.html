@@ -9,17 +9,18 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-    <div class="container" id="app">
+    <div class="container">
             <h1>Radios Skydata CR</h1>
-            <form class="col-md-8 card p-4 mb-4 shadow"  style="margin:auto">
+            <div id="datos">
+            <form class="col-md-8 card p-4 mb-4 shadow"  style="margin:auto" v-if="mostrar">
                     <div class="form-row">
                       <div class="col">
                         <label for="cliente">Cliente</label>
-                        <input type="text" id="cliente" class="form-control" placeholder="Cliente">
+                        <input type="text" id="cliente" class="form-control" placeholder="Cliente" v-model="cliente">
                       </div>
                       <div class="col">
                         <label for="ejetivo">Ejecutivo</label>
-                        <select id="ejetivo" class="form-control">
+                        <select id="ejetivo" class="form-control" v-model="ejecutivo">
                                 <option>Ejecutivo...</option>
                                 <option value="Cindy">Cindy</option>
                                 <option value="Nathalia">Nathalia</option>
@@ -28,20 +29,36 @@
                       </div>
                       <div class="col">
                             <label for="modalidad">Modalidad</label>
-                            <select id="modalidad" class="form-control">
+                            <select id="modalidad" class="form-control" v-model="modalidad">
                                     <option>Modalidad...</option>
-                                    <option value="Cindy">Demo</option>
-                                    <option value="Nathalia">Venta</option>
-                                    <option value="Juan Carlos">Alquiler</option>
+                                    <option value="Demo">Demo</option>
+                                    <option value="Venta">Venta</option>
+                                    <option value="Alquiler">Alquiler</option>
                             </select>
                       </div>
                       <div class="col">
                             <label for="fecha">Fecha</label>
-                              <input class="form-control" type="date" value="2019-01-01" id="fecha">
+                              <input class="form-control" type="date" value="2019-01-01" id="fecha" v-model="fecha">
                         </div>
                     </div>
+                    <div>
+                    <button type="submit" class="btn btn-primary mt-3" @click.prevent="agregarDatos">Agregar Datos</button>
+                    </div>
+                    <!--<pre>{{$data}}</pre>-->
+                    
             </form>
-      
+
+            <div class="card bg-light mb-3" style="max-width: 18rem;" v-for="dato in datos" :key="dato.id">
+                <div class="card-header">{{dato.cliente}}</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{dato.ejecutivo}}</h5>
+                  <p class="card-text">{{dato.modalidad}}</p>
+                  <p class="card-text">{{dato.fecha}}</p>
+                </div>
+            </div>
+          </div>
+
+      <div  id="radio" >
             <form class="col-md-8 card p-4 shadow" style="margin:auto">
                     <div class="form-row">
                       <div class="form-group col-md-4">
@@ -93,7 +110,8 @@
                   </div>
                     <button type="submit" class="btn btn-primary" @click.prevent="nuevoRadio">Agregar</button>
             </form>
-                    <table class="table table-bordered mt-5">
+
+                    <table class="table table-bordered mt-5" v-for="(radio, index) in radios" :key="radio.id">
                         <tr>
                             <th>Nombre</th>
                             <th>Imei</th>
@@ -103,7 +121,7 @@
                             <th>Estado</th>
                             <th>Cargador</th>
                         </tr>
-                        <tr v-for="(radio, index) in radios" :key="radio.id">
+                        <tr >
                             <td>{{ radio.nombre }}</td>
                             <td>{{ radio.imei }}</td>
                             <td>{{ radio.sim }}</td>
@@ -114,8 +132,8 @@
                         </tr>
                     </table>
 
-                    <pre> {{ $data }}</pre>
-
+                   <!--<pre> {{ $data }}</pre>-->
+                  </div>
                 </div>
 
 
