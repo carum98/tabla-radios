@@ -11,9 +11,9 @@
           <label for="ejetivo">Ejecutivo</label>
           <select id="ejetivo" class="form-control" v-model="ejecutivo">
             <option>Ejecutivo...</option>
-            <option value="Cindy">Cindy</option>
-            <option value="Nathalia">Nathalia</option>
-            <option value="Juan Carlos">Juan Carlos</option>
+            <option value="Cindy Cartin">Cindy</option>
+            <option value="Nathalia Blanco">Nathalia</option>
+            <option value="Juan Carlos Rodriguez">Juan Carlos</option>
           </select>
              </div>
              <div class="col">
@@ -35,15 +35,31 @@
                 </div>
   <!--<pre>{{$data}}</pre>-->
   </form>
+  
 
   <!--Recuadro para mostrara informcion suministraba por madio del formulario-->
-  <div class="card bg-light mb-3" style="max-width: 18rem;" v-for="dato in datos" :key="dato.id">
+  <!--<div class="card bg-light mb-3" style="max-width: 18rem;" v-for="dato in datos" :key="dato.id">
       <div class="card-header">{{dato.cliente}}</div>
       <div class="card-body">
           <h5 class="card-title">{{dato.ejecutivo}}</h5>
           <p class="card-text">{{dato.modalidad}}</p>
           <p class="card-text">{{dato.fecha}}</p>
       </div>
+  </div>-->
+
+  <div class="row" v-for="dato in datos" :key="dato.id">
+    <div class="card-header text-white bg-dark col m-1 rounded-pill">
+      <h5 class="text-center">{{dato.cliente}}</h5>
+    </div>
+    <div class="card-header text-white bg-dark col m-1 rounded-pill">
+      <h5 class="text-center">{{dato.ejecutivo}}</h5>
+    </div> 
+    <div class="card-header text-white bg-dark col m-1 rounded-pill">
+      <h5 class="text-center">{{dato.modalidad}}</h5>
+    </div> 
+    <div class="card-header text-white bg-dark col m-1 rounded-pill">
+      <h5 class="text-center">{{dato.fecha}}</h5>
+    </div>
   </div>
 </div>
 </template>

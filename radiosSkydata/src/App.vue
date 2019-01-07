@@ -7,7 +7,7 @@
         <!--Utilizando Componentes-->
         <informacion></informacion>
         <radios></radios>
-
+      
       </div>
     </div>
   </div>

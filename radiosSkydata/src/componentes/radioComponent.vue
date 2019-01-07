@@ -1,11 +1,11 @@
 <template>
 <div>
 <!--Formulario para ingresar datos de los radios-->
-  <form class="col-md-8 card p-4 shadow" style="margin:auto">
+  <form class="col-md-8 card p-4 shadow" style="margin:auto" v-if="!ocultar">
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="nombre">Nombre</label>
-          <input type="text" class="form-control" id="nombre" placeholder="Nombre" v-model="nombre" maxlength="5">
+          <input type="text" class="form-control" id="nombre" placeholder="Nombre" v-model="nombre">
         </div>
         <div class="form-group col-md-4">
           <label for="imei">IMEI</label>
@@ -13,7 +13,7 @@
         </div>
         <div class="form-group col-md-4">
           <label for="sim">Sim</label>
-          <input type="number" class="form-control" id="sim" placeholder="Sim" v-model="sim" maxlength="8">
+          <input type="number" class="form-control" id="sim" placeholder="Sim" v-model="sim">
         </div>
       </div>
 
@@ -54,9 +54,14 @@
         <button type="submit" class="btn btn-primary" @click.prevent="nuevoRadio">Agregar</button>
 
   </form>
+  <!--Ocultar formulario de radios-->
+      <div class="custom-control custom-switch float-right">
+        <input type="checkbox" class="custom-control-input" id="ocultar" v-model="ocultar">
+        <label class="custom-control-label" for="ocultar">ocultar</label>
+      </div>
 
  <!--Tabla con la informacion de los radios-->
-    <table class="table table-bordered mt-5 table-dark">
+    <table class="table table-bordered mt-4 table-dark">
         <tr>
             <th>Nombre</th>
             <th>Imei</th>
@@ -94,7 +99,9 @@ export default {
         modelo: '',
         cellphone: '',
         cargador: '',
-        estado: ''
+        estado: '',
+        ocultar: ''
+
     }
   },
   methods: {
@@ -105,7 +112,15 @@ export default {
           this.imei = "";
           this.sim = "";
           this.cellphone = "";
-        }
+    }
   }
 }
+
 </script>
+
+<style>
+ table tr{
+   text-align: center;
+ }
+</style>
+
