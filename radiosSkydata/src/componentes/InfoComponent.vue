@@ -35,7 +35,7 @@
                 </div>
   <!--<pre>{{$data}}</pre>-->
   </form>
-  
+
 
   <!--Recuadro para mostrara informcion suministraba por madio del formulario-->
   <!--<div class="card bg-light mb-3" style="max-width: 18rem;" v-for="dato in datos" :key="dato.id">
@@ -53,10 +53,10 @@
     </div>
     <div class="card-header text-white bg-dark col m-1 rounded-pill">
       <h5 class="text-center">{{dato.ejecutivo}}</h5>
-    </div> 
+    </div>
     <div class="card-header text-white bg-dark col m-1 rounded-pill">
       <h5 class="text-center">{{dato.modalidad}}</h5>
-    </div> 
+    </div>
     <div class="card-header text-white bg-dark col m-1 rounded-pill">
       <h5 class="text-center">{{dato.fecha}}</h5>
     </div>
