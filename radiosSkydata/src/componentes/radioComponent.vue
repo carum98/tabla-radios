@@ -9,21 +9,21 @@
         </div>
         <div class="form-group col-md-4">
           <label for="imei">IMEI</label>
-          <input type="number" name="imei" class="form-control" id="imei" placeholder="IMEI" autocomplete="off" v-model="imei" v-validate="'required|min:14|max:15'" required title="IMEI del radio, 15 caracteres">
-          <span >{{ errors.first('imei') }}</span>
+          <input type="number" name="imei" class="form-control" id="imei" placeholder="IMEI" autocomplete="off" v-model="imei" v-validate="'required|max:15'" required title="IMEI del radio, 15 caracteres">
+          <div v-show="errors.has('imei')" class="text-danger">EL Imei debe contener 15 caracteres</div>
         </div>
         <div class="form-group col-md-4">
           <label for="sim">Sim</label>
-          <input type="number" name="sim" class="form-control" id="sim" placeholder="Sim" autocomplete="off" v-model="sim" v-validate="'required|min:8|max:7'" required title="SIM asignado, 8 caracteres" data-placement="right">
-          <span >{{ errors.first('sim') }}</span>
+          <input type="number" name="sim" class="form-control" id="sim" placeholder="Sim" autocomplete="off" v-model="sim" v-validate="'required|max:8'" required title="SIM asignado, 8 caracteres" data-placement="right">
+          <div v-show="errors.has('sim')" class="text-danger">EL Sim debe contener 8 caracteres</div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="cellphone">Cellphone number</label>
-          <input type="number" name="cellphone" class="form-control" id="cellphone" placeholder="Cellphone number" autocomplete="off" v-model="cellphone" v-validate="'required|length:5'" required title="Cellphone number de la plataforma, 18 caracteres" data-placement="left">
-          <span >{{ errors.first('cellphone') }}</span>
+          <input type="number" name="cellphone" class="form-control" id="cellphone" placeholder="Cellphone number" autocomplete="off" v-model="cellphone" v-validate="'required|max:18'" required title="Cellphone number de la plataforma, 18 caracteres" data-placement="left">
+          <div v-show="errors.has('cellphone')" class="text-danger">Cellphone number consta de 18 caracteres</div>
         </div>
         <div class="form-group col-md-6">
           <label for="modelo" placeholder="Modelo">Modelo</label>
@@ -64,7 +64,8 @@
       </div>
 
  <!--Tabla con la informacion de los radios-->
-    <table class="table table-bordered mt-4 table-dark" v-if="mostrar">
+    <table id="TablaRadios" class="table table-bordered mt-4 table-dark shadow table-hover display" v-if="mostrar">
+      <thead>
         <tr>
             <th>Nombre</th>
             <th>Imei</th>
@@ -74,15 +75,18 @@
             <th>Estado</th>
             <th>Cargador</th>
         </tr>
+      </thead>
+      <tbody>
         <tr v-for="radio in radios" :key="radio.id">
-            <td>{{ radio.nombre }}</td>
-            <td>{{ radio.imei }}</td>
-            <td>{{ radio.sim }}</td>
-            <td>{{ radio.modelo }}</td>
-            <td>{{ radio.cellphone }}</td>
-            <td>{{ radio.estado }} </td>
-            <td>{{ radio.cargador }}</td>
+            <td >{{radio.nombre}}</td>
+            <td >{{radio.imei}}</td>
+            <td >{{radio.sim}}</td>
+            <td >{{radio.modelo}}</td>
+            <td >{{radio.cellphone}}</td>
+            <td >{{radio.estado}} </td>
+            <td >{{radio.cargador}}</td>
         </tr>
+      </tbody>
     </table>
 
 </div>
@@ -104,7 +108,7 @@ export default {
         cargador: '',
         estado: '',
         ocultar: '',
-        mostrar: ''
+        mostrar: true
 
     }
   },

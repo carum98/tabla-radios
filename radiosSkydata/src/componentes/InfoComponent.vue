@@ -27,7 +27,7 @@
              </div>
                 <div class="col">
                 <label for="fecha">Fecha</label>
-                <input class="form-control" type="date" value="2019-01-01" id="fecha" v-model="fecha">
+                <input class="form-control" name="fecha" type="date" value="2019-01-01" id="fecha" v-model="fecha" data-placement="bottom" title="Fecha de entrega de los radios" >
                 </div>
     </div>
                 <div>
@@ -35,17 +35,6 @@
                 </div>
   <!--<pre>{{$data}}</pre>-->
   </form>
-
-
-  <!--Recuadro para mostrara informcion suministraba por madio del formulario-->
-  <!--<div class="card bg-light mb-3" style="max-width: 18rem;" v-for="dato in datos" :key="dato.id">
-      <div class="card-header">{{dato.cliente}}</div>
-      <div class="card-body">
-          <h5 class="card-title">{{dato.ejecutivo}}</h5>
-          <p class="card-text">{{dato.modalidad}}</p>
-          <p class="card-text">{{dato.fecha}}</p>
-      </div>
-  </div>-->
 
   <div class="row" v-for="dato in datos" :key="dato.id">
     <div class="card-header text-white bg-dark col m-1 rounded-pill">
@@ -80,6 +69,7 @@ export default {
   methods:{
     agregarDatos: function(){
 
+      if(this.cliente && this.ejecutivo && this.modalidad){
       this.datos.push({cliente: this.cliente, ejecutivo: this.ejecutivo, modalidad: this.modalidad, fecha: this.fecha})
 
         this.mostrar = false;
@@ -87,6 +77,7 @@ export default {
         this.ejecutivo = "";
         this.modalidad = "";
         this.fecha = "";
+      }
     }
   }
 }
