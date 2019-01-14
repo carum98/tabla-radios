@@ -95,6 +95,8 @@
 
 <script>
 
+import { bus } from '../main.js'
+
 export default {
   data(){
     return {
@@ -109,7 +111,6 @@ export default {
         estado: '',
         ocultar: '',
         mostrar: true
-
     }
   },
   methods: {
@@ -126,6 +127,8 @@ export default {
 
         this.radios.push({nombre:this.nombre ,imei: this.imei, sim: this.sim, modelo: this.modelo, cellphone: this.cellphone, estado: this.estado, cargador: this.cargador });
 
+          bus.$emit('actualizarexcel', this.radios)
+
           this.nombre = "";
           this.imei = "";
           this.sim = "";
@@ -133,9 +136,9 @@ export default {
       }
 
     }
+
   }
 }
-
 </script>
 
 <style>
