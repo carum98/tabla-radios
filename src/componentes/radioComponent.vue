@@ -64,7 +64,8 @@
       </div>
 
  <!--Tabla con la informacion de los radios-->
-    <table id="TablaRadios" class="table table-bordered mt-4 table-dark shadow table-hover" v-if="mostrar">
+ <div  v-if="mostrar">
+    <table id="TablaRadios" class="table table-bordered mt-4 table-dark shadow table-hover">
       <thead>
         <tr>
             <th>Nombre</th>
@@ -88,15 +89,16 @@
         </tr>
       </tbody>
     </table>
-<pre>{{$data}}</pre>
+<!--<pre>{{$data}}</pre>-->
+  <download-excel
+	  class   = "btn btn-secondary"
+	  :data   = "radios"
+	  :fields = "columnas"
+	  name    = "Radios.xls"
+    >
+  </download-excel>
 
-<download-excel
-	class   = "btn btn-default"
-	:data   = "json_data"
-	:fields = "json_fields"
-	name    = "filename.xls">
-
-</download-excel>
+</div>
 </div>
 
 </template>
@@ -104,6 +106,7 @@
 <script>
 
 import { bus } from '../main.js'
+import { Field } from 'vee-validate';
 
 export default {
   data(){
@@ -118,8 +121,48 @@ export default {
         cargador: '',
         estado: '',
         ocultar: '',
-        mostrar: true 
-    }
+        mostrar: false,
+
+    columnas: {
+        'Complete name': 'nombre',
+        'Imei': 'imei',
+        'Sim' : 'sim',
+        'Modelo': 'modelo',
+        'Cellphone number' : 'cellphone',
+        'Cargador': 'cargador',
+        'Estado': 'estado'
+    },
+    /*
+    json_data: [
+        {
+            'name': 'Tony Peña',
+            'city': 'New York',
+            'country': 'United States',
+            'birthdate': '1978-03-15',
+            'phone': {
+                'mobile': '1-541-754-3010',
+                'landline': '(541) 754-3010'
+            }
+        },
+        {
+            'name': 'Thessaloniki',
+            'city': 'Athens',
+            'country': 'Greece',
+            'birthdate': '1987-11-23',
+            'phone': {
+                'mobile': '+1 855 275 5071',
+                'landline': '(2741) 2621-244'
+            }
+        }
+    ],*/
+    json_meta: [
+        [
+            {
+                'key': 'charset',
+                'value': 'utf-8'
+            }
+        ]
+    ]}
   },
   methods: {  
     nuevoRadio: function(){
