@@ -22,7 +22,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="cellphone">Cellphone number</label>
-          <input type="number" name="cellphone" class="form-control" id="cellphone" placeholder="Cellphone number" autocomplete="off" v-model="cellphone" v-validate="'min:0|max:18'" required title="Cellphone number de la plataforma, 18 caracteres" data-placement="left">
+          <input type="number" name="cellphone" class="form-control" id="cellphone" placeholder="Cellphone number" autocomplete="off" v-model="cellphone" v-validate="'min:0|max:18'" title="Cellphone number de la plataforma, 18 caracteres" data-placement="left">
           <div v-show="errors.has('cellphone')" class="text-danger">Cellphone number consta de 18 caracteres</div>
         </div>
         <div class="form-group col-md-6">
@@ -78,7 +78,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="radio in radios" :key="radio.id">
+        <tr v-for="radio in radios" :key="radio.id"> 
             <td>{{radio.nombre}}</td>
             <td>{{radio.imei}}</td>
             <td>{{radio.sim}}</td>
@@ -94,16 +94,25 @@
 	  class   = "btn btn-secondary"
 	  :data   = "radios"
 	  :fields = "columnas"
-	  name    = "Radios.xls"
-    >
+	  name    = "Skydata.xls">
   </download-excel>
 
-</div>
-</div>
+<button @click="copiarAlPortapapeles('TablaRadios')">Copiar</button>
 
+</div>
+</div>
 </template>
 
 <script>
+
+function copiarAlPortapapeles(TablaRadios) {
+  var aux = document.createElement("input");
+  aux.setAttribute("value", document.getElementById(TablaRadios).innerHTML);
+  document.body.appendChild(aux);
+  aux.select();
+  document.execCommand("copy");
+  document.body.removeChild(aux);
+}
 
 import { bus } from '../main.js'
 import { Field } from 'vee-validate';
@@ -132,62 +141,47 @@ export default {
         'Cargador': 'cargador',
         'Estado': 'estado'
     },
-    /*
-    json_data: [
-        {
-            'name': 'Tony Peña',
-            'city': 'New York',
-            'country': 'United States',
-            'birthdate': '1978-03-15',
-            'phone': {
-                'mobile': '1-541-754-3010',
-                'landline': '(541) 754-3010'
-            }
-        },
-        {
-            'name': 'Thessaloniki',
-            'city': 'Athens',
-            'country': 'Greece',
-            'birthdate': '1987-11-23',
-            'phone': {
-                'mobile': '+1 855 275 5071',
-                'landline': '(2741) 2621-244'
-            }
-        }
-    ],*/
     json_meta: [
         [
-            {
-                'key': 'charset',
-                'value': 'utf-8'
-            }
+          {
+              'key': 'charset',
+              'value': 'utf-8'
+          }
         ]
     ]}
   },
   methods: {  
     nuevoRadio: function(){
 
-      var nombre = this.nombre.trim();
-      var imei = this.imei.trim();
-      var sim = this.sim.trim();
+      var nombre    = this.nombre.trim();
+      var imei      = this.imei.trim();
+      var sim       = this.sim.trim();
       var cellphone = this.cellphone.trim();
-      var modelo = this.modelo;
+      var modelo    = this.modelo.trim();
 
-      if(nombre && imei && sim && cellphone && modelo){
+      if(nombre && imei && sim && cellphone && modelo != "T199"){
         this.mostrar = true
-
         this.radios.push({nombre:this.nombre ,imei: this.imei, sim: this.sim, modelo: this.modelo, cellphone: this.cellphone, estado: this.estado, cargador: this.cargador });
-
           bus.$emit('actualizarexcel', this.radios)
 
           this.nombre = "";
           this.imei = "";
           this.sim = "";
           this.cellphone = "";
+      }else if(nombre && imei && sim && modelo=="T199"){
+        this.mostrar = true
+        this.radios.push({nombre:this.nombre ,imei: this.imei, sim: this.sim, modelo: this.modelo, cellphone: null, estado: this.estado, cargador: this.cargador });
+      
+          this.nombre = "";
+          this.imei = "";
+          this.sim = "";
+          this.cellphone = "";
+      }else{
       }
     }
   }
 }
+
 </script>
 
 <style>
@@ -195,4 +189,3 @@ export default {
    text-align: center;
  }
 </style>
-

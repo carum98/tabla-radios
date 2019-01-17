@@ -40,26 +40,6 @@ export default {
     })
   }
 }
-//Generar excel y rellenar tabla
-   /*$(document).ready( function () {
-      $('#TablaRadios').DataTable({
-        "data":
-          this.excel,
-        "columns": [
-            { "data": "nombre" },
-            { "data": "imei" },
-            { "data": "sim" },
-            { "data": "modelo" },
-            { "data": "cellphone" },
-            { "data": "estado" },
-            { "data": "cargador" }
-        ],
-        dom: 'Bt',
-        buttons: [
-        'copy', 'csv', 'excel'
-          ]
-      });
-  } );*/
 </script>
 <style>
   body{
