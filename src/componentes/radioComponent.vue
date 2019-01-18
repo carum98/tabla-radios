@@ -105,15 +105,6 @@
 
 <script>
 
-function copiarAlPortapapeles(TablaRadios) {
-  var aux = document.createElement("input");
-  aux.setAttribute("value", document.getElementById(TablaRadios).innerHTML);
-  document.body.appendChild(aux);
-  aux.select();
-  document.execCommand("copy");
-  document.body.removeChild(aux);
-}
-
 import { bus } from '../main.js'
 import { Field } from 'vee-validate';
 
@@ -178,6 +169,16 @@ export default {
           this.cellphone = "";
       }else{
       }
+    },
+    copiarAlPortapapeles: function(TablaRadios){
+     var aux = document.createElement("table");
+     aux.setAttribute("contentEditable", true);
+     aux.innerHTML = document.getElementById('TablaRadios').innerHTML;
+     aux.setAttribute("onfocus", "document.execCommand('selectAll',false,null)"); 
+     document.body.appendChild(aux);
+     aux.focus();
+     document.execCommand("copy");
+     document.body.removeChild(aux);
     }
   }
 }
